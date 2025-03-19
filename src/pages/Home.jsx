@@ -2,7 +2,7 @@ import React from "react";
 
 const Home = () => {
   return (
-    <div className="w-full h-[150vh] sm:h-[250vh]">
+    <div className="w-full h-[100vh] sm:h-[250vh] border-[2px] border-zinc-100">
       <div className="picture w-full h-full object-cover">
         <img
           src="https://a.storyblok.com/f/133769/1920x2716/5c24d6b467/exo-ape-hero-1.jpg/m/2400x3395/filters:quality(90)"
