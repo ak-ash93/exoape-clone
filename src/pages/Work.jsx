@@ -1,4 +1,8 @@
-import React from "react";
+import React, { useLayoutEffect, useRef } from "react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const Work = () => {
   const elem = [
@@ -35,17 +39,88 @@ const Work = () => {
         "https://a.storyblok.com/f/133769/2409x3000/cfd16e1a58/cambium-carbon-hero.jpg/m/1300x1619/filters:quality(90)",
     },
   ];
+  const containerRef = useRef();
+  const headingRef = useRef();
+  const introRef = useRef();
+
+  useLayoutEffect(() => {
+    const ctx = gsap.context(() => {
+      gsap.fromTo(
+        headingRef.current,
+        { y: -100, opacity: 0 }, // Start from below, rotated, and hidden
+        {
+          y: 0,
+          rotation: 0,
+          opacity: 1,
+          duration: 1.5,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: headingRef.current, // Trigger on heading itself
+            start: "top 80%", // Animation starts when the heading reaches the bottom of the viewport
+            end: "bottom top", // Ends when the heading reaches the top of the viewport
+            scrub: true,
+            once: true, // Ensure the animation happens only once when the heading is first in view
+          },
+        }
+      );
+      gsap.fromTo(
+        introRef.current,
+        { y: -100, opacity: 0 }, // Start from below, rotated, and hidden
+        {
+          y: 0,
+          rotation: 0,
+          opacity: 1,
+          duration: 1.5,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: headingRef.current, // Trigger on heading itself
+            start: "top 50%", // Animation starts when the heading reaches the bottom of the viewport
+            end: "bottom top", // Ends when the heading reaches the top of the viewport
+            scrub: true,
+            once: true, // Ensure the animation happens only once when the heading is first in view
+          },
+        }
+      );
+
+      gsap.fromTo(
+        ".card:not(:first-child)",
+        { y: 1000, opacity: 0 },
+        {
+          y: 0,
+          opacity: 1,
+          stagger: 1,
+          duration: 1,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: containerRef.current,
+            start: "center center", // Animation starts when the top of the section reaches the center of the viewport
+            end: "bottom top", // Ends when the bottom of the section reaches the top of the viewport
+            scrub: true, // Smooth scroll effect
+            pin: true, // Pins the section during scroll
+          },
+        }
+      );
+    });
+
+    return () => ctx.revert();
+  }, []);
 
   return (
-    <div className="w-full text-zinc-800 text-center py-20 px-6 md:px-12 mt-20">
-      <div className="max-w-screen-xl mx-auto">
+    <div className="work-section w-full text-zinc-800 text-center  pb-50 px-6 md:px-12 mt-40 ">
+      <div className="max-w-screen-xl mx-auto overflow-hidden">
         {/* Work Section Title */}
-        <h2 className="text-5xl md:text-[10rem] tracking-wider font-light mb-10 text-center">
+        <h2
+          ref={headingRef}
+          className="text-5xl md:text-[10rem] tracking-wider font-light mb-10 text-center"
+        >
           Work
         </h2>
 
         {/* Featured Projects Section */}
-        <div className="featured flex flex-col items-center gap-3 mb-12">
+        <div
+          ref={introRef}
+          className="featured flex flex-col items-center gap-3 mb-12"
+        >
           <div className="flex items-center gap-2">
             <svg
               viewBox="0 0 12 12"
@@ -69,29 +144,33 @@ const Work = () => {
         </div>
 
         {/* Bento Grid Layout */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 text-white">
+        <div
+          ref={containerRef}
+          className=" relative w-full h-[700px] flex text-white"
+        >
           {elem.map((item, index) => (
             <div
               key={index}
-              className={`relative overflow-hidden rounded-2xl group ${
-                index % 3 === 0 ? "col-span-2 row-span-2" : ""
-              } ${index === 0 ? "col-span-3 h-[100vh]" : ""} ${
-                index === elem.length - 1 ? "col-span-4 h-[30vh]" : ""
-              }`}
+              className=" card absolute top-0 left-1/2 -translate-x-1/2 h-full w-[80rem] group rounded-2xl"
             >
               {/* Video on Hover */}
               <video
                 className="absolute inset-0 w-full h-full object-cover opacity-0 group-hover:opacity-100 transition-opacity duration-500"
                 src={item.videoUrl}
-                autoPlay
-                loop
                 muted
                 playsInline
+                loop
+                ref={(el) => {
+                  if (el) {
+                    el.onmouseenter = () => el.play();
+                    el.onmouseleave = () => el.pause();
+                  }
+                }}
               />
 
               {/* Static Image */}
               <img
-                className="w-full h-full object-cover transition-transform duration-500 transform group-hover:scale-105"
+                className="w-full h-full object-cover object-top transition-transform duration-500 transform group-hover:scale-105 rounded-2xl"
                 src={item.imageUrl}
                 alt={item.heading}
               />

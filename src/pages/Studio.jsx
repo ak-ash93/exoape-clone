@@ -9,7 +9,7 @@ const Studio = () => {
           muted
           loop
           className="w-full h-full scale-[1.2]"
-          src="https://download-video-ak.vimeocdn.com/v3-1/playback/334619e0-f92f-4627-ba88-dfe521b4e062/9e976370?__token__=st=1742447401~exp=1742461801~acl=%2Fv3-1%2Fplayback%2F334619e0-f92f-4627-ba88-dfe521b4e062%2F9e976370%2A~hmac=212df5951a5428fe2c5d389c310a36bd87465c3ab430c6a1f491b04c2fa61f92&r=dXMtY2VudHJhbDE%3D"
+          src="https://cdn.dribbble.com/userupload/11487206/file/original-ad078b91ade3733dc66e4ba14ee9577d.mp4"
         ></video>
       </div>
       <div className="overlay absolute w-full h-full text-white  flex flex-col justify-between py-18">

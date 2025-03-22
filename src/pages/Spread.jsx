@@ -2,7 +2,7 @@ import React from "react";
 
 const Spread = () => {
   return (
-    <div className="w-full bg-white py-15">
+    <div className="w-full h-[40vh]  bg-white py-15  ">
       <div className="max-w-screen-2xl h-32 mx-auto px-5 sm:px-10">
         <div className="flex items-center justify-center gap-3">
           <svg
@@ -22,14 +22,14 @@ const Spread = () => {
         </div>
 
         <div className="heading text-center mt-10">
-          <h3 className="capitalize text-6xl  ">Spread </h3>
-          <h3 className="capitalize text-6xl  ">the news</h3>
-          <p className="text-sm tracking-tighter mx-auto w-2/3 mt-5 opacity-50 leading-5">
+          <h3 className="capitalize text-6xl sm:text-9xl ">Spread </h3>
+          <h3 className="capitalize text-6xl sm:text-9xl ">the news</h3>
+          <p className="text-sm sm:text-2xl tracking-tighter mx-auto w-2/3 mt-5 sm:mt-10 opacity-50 leading-5">
             Find out more about our work on these leading design and technology
             platforms.
           </p>
           <a
-            className="border-b-[1px] border-b-zinc-500 text-sm font-light mt-3 inline-block"
+            className="border-b-[1px] border-b-zinc-500 text-sm sm:text-lg sm:mt-10 font-light mt-3 inline-block"
             href="#"
           >
             Browse all news

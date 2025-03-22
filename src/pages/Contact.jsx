@@ -11,8 +11,8 @@ const ContactPage = () => {
           loop
           muted
           playsInline
-          className="absolute top-80 left-0 w-full h-[50vh] object-cover "
-          src="https://cdn.dribbble.com/userupload/36805531/file/large-048f9e973cb643844887fdfd2f02db9b.mp4"
+          className="absolute top-48  left-0 w-full h-[62vh] object-cover "
+          src="https://cdn.dribbble.com/userupload/2994229/file/original-f9346fee35d9afcdf84b1303c26dc4d1.mp4"
         >
           Your browser does not support the video tag.
         </video>
