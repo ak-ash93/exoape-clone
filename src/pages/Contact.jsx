@@ -4,21 +4,21 @@ const ContactPage = () => {
   return (
     <div className="bg-black text-white min-h-screen flex flex-col mt-30">
       {/* Hero Section */}
-      <section className="relative flex flex-col items-center text-center py-20 px-6">
+      <section className="relative flex flex-col items-center text-center py-20 px-6 ">
         {/* Background Video */}
         <video
           autoPlay
           loop
           muted
           playsInline
-          className="absolute top-48  left-0 w-full h-[62vh] object-cover "
+          className="absolute top-48  left-0 w-full h-[62vh] object-cover  "
           src="https://cdn.dribbble.com/userupload/2994229/file/original-f9346fee35d9afcdf84b1303c26dc4d1.mp4"
         >
           Your browser does not support the video tag.
         </video>
 
         {/* Overlay Text */}
-        <div className="relative z-10 max-w-2xl px-4">
+        <div className="relative z-10 max-w-2xl px-4 mb-5">
           <h1 className="text-4xl md:text-6xl font-bold text-gray-300">
             Our Story
           </h1>
@@ -30,7 +30,7 @@ const ContactPage = () => {
       </section>
 
       {/* Footer Section */}
-      <footer className="mt-auto py-12 px-6 border-t border-gray-700">
+      <footer className="  p-20 border-t border-gray-700 mt-[22rem]">
         <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 text-center md:text-left">
           {/* Address */}
           <div>

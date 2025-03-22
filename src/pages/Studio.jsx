@@ -1,9 +1,62 @@
-import React from "react";
+import gsap from "gsap/all";
+import React, { useEffect, useRef } from "react";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 const Studio = () => {
+  const containerRef = useRef();
+  const videoRef = useRef();
+  const playHeadingRef = useRef();
+  const reelHeadingRef = useRef();
+
+  useEffect(() => {
+    gsap.registerPlugin(ScrollTrigger);
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: containerRef.current,
+        top: "0 0",
+        pin: true,
+        scrub: 1,
+      },
+    });
+    tl.to(
+      videoRef.current,
+      {
+        width: "100%",
+        height: "100%",
+        ease: "power4.inOut",
+      },
+      "a"
+    );
+
+    tl.to(
+      playHeadingRef.current,
+      {
+        x: "-210%",
+        ease: "power4.inOut",
+        scale: 2,
+      },
+      "a"
+    );
+
+    tl.to(
+      reelHeadingRef.current,
+      {
+        x: "210%",
+        ease: "power4.inOut",
+        scale: 2,
+      },
+      "a"
+    );
+  }, []);
   return (
-    <div className="w-full h-screen overflow-hidden relative  bg-black ">
-      <div className="w-40 h-40 sm:w-[140rem] sm:h-[20rem] overflow-hidden aspect-video absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 ">
+    <div
+      ref={containerRef}
+      className="w-full h-screen overflow-hidden relative  bg-black "
+    >
+      <div
+        ref={videoRef}
+        className="w-40 h-40 sm:w-[140rem] sm:h-[20rem] overflow-hidden aspect-video absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 "
+      >
         <video
           autoPlay
           muted
@@ -12,7 +65,7 @@ const Studio = () => {
           src="https://cdn.dribbble.com/userupload/11487206/file/original-ad078b91ade3733dc66e4ba14ee9577d.mp4"
         ></video>
       </div>
-      <div className="overlay absolute w-full h-full text-white  flex flex-col justify-between py-18">
+      <div className="overlay absolute w-full h-full text-white  flex flex-col justify-between py-18 ">
         <div className="w-full flex items-center justify-center gap-3">
           <svg
             data-v-669b4a84=""
@@ -30,8 +83,18 @@ const Studio = () => {
           <h3 className="text-xl capitalize">Work in motion</h3>
         </div>
         <h1 className="w-full flex justify-center gap-32 sm:gap-96 items-center">
-          <div className="text-4xl sm:text-7xl tracking-wide">Play</div>
-          <div className="text-4xl sm:text-7xl tracking-wide">Reel</div>
+          <div
+            ref={playHeadingRef}
+            className="text-4xl sm:text-7xl tracking-wide"
+          >
+            Play
+          </div>
+          <div
+            ref={reelHeadingRef}
+            className="text-4xl sm:text-7xl tracking-wide"
+          >
+            Reel
+          </div>
         </h1>
 
         <p className="text-center px-10 text-lg opacity-35">

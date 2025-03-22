@@ -57,9 +57,11 @@ const NavBar = () => {
             <NavLink
               key={index}
               to={`/${link.toLowerCase()}`}
-              className="text-xl font-light"
+              className="text-sm font-light group relative"
             >
               {link}
+              {/* Underline */}
+              <span className="absolute left-0 bottom-0 w-0 h-[1px] bg-white transition-all duration-600 group-hover:w-full"></span>
             </NavLink>
           ))}
         </div>
